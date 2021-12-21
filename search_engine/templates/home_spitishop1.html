@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+
+
+	<head>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+
+		.footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0px;
+		   width: 100%;
+		   background-color: #595959;
+			color: white;
+		   text-align: left;
+			font-size:15px;
+		}
+
+			input[type=submit] {
+				background-color: #4CAF50;
+				color: white;
+				padding: 12px 20px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				float: right;
+
+			}
+
+			input[type=submit]:hover {
+						background-color: #45a049;
+					}
+
+					#form {
+			  background: #e6ac00;
+			  margin: 3px;
+			  padding: 15px;
+						margin-left: 25%;
+						margin-right: 25%;
+
+						text-align: center;
+						 align:"center";
+			}
+					input[type=text] {
+		  width: 300px;
+		  box-sizing: border-box;
+		  border: 2px solid #ccc;
+		  border-radius: 4px;
+		  font-size: 16px;
+		  background-color: white;
+		  background-image: url('searchicon.png');
+		  background-position: 10px 10px;
+		  background-repeat: no-repeat;
+		  padding: 12px 20px 12px 40px;
+		  -webkit-transition: width 0.4s ease-in-out;
+		  transition: width 0.4s ease-in-out;
+		}
+
+		input[type=text]:focus {
+		  width: 60%;
+		}
+
+		</style>
+	</head>
+
+	<body>
+		<a href="{{ url_for('spitishop_home')}}"><img src='/static/spitishop2.png' align="left" width='190' height='50'></a>
+		<br><br><br>
+		<!--<h1 align="center">Loreal Italy</h1> -->
+		<div style="margin-left: 35%;"><img src='/static/spitishop_bg.jpg' align="center" width='400' height='150'></div>
+		<div style="clear:both;"><h2 align="center">Search Engine Demo</h2></div>
+
+
+		<p><b>Παρακαλώ επιλέξτε κατηγορία και γράψτε την αναζήτηση σας. Μετά πατήστε το κουμπί 'Submit'.</b></p>
+
+		<div  id="form" align="center">
+
+			<form id="search_id" action = "http://spitishop.infilab.io/spitishop_result" method = "POST">
+				<select  name="category" style="width:150px; height:40px; background-color: #ffffcc; border-radius: 5px;">
+					<option value="All">Όλες οι κατηγορίες</option>
+					<option value="Κρεβατοκάμαρα">Κρεβατοκάμαρα</option>
+					<option value="Μπάνιο">Μπάνιο</option>
+					<option value="Σαλόνι">Σαλόνι</option>
+					<option value="Κουζίνα - Τραπεζαρία">Κουζίνα - Τραπεζαρία</option>
+					<option value="Βρεφικά">Βρεφικά</option>
+					<option value="Παιδικά">Παιδικά</option>
+					<option value="Μόδα Γάμου">Μόδα Γάμου</option>
+					<option value="Θαλάσσης">Θαλάσσης</option>
+					<option value="Διακόσμηση">Διακόσμηση</option>
+				</select>
+				<input type="text" name="search" placeholder="Search..">
+
+				<input type="submit">
+			</form>
+
+		</div>
+		<br>
+		<!--<p>* Η συγκεκριμένη σελίδα αποτελεί demo και δεν παρουσιάζει ολοκληρωμένο αλγόριθμο. Συνεπώς περιέχει αρκετά bugs.</p>-->
+		<hr>
+		<h1 style="text-align:center; color:#4CAF50;">Δυνατότητες του Search Engine</h1>
+		<ul>
+			<li style="font-size:20px; color:#d19d04;"><b>Αναζήτηση ανά κατηγορία</b>. (Αν η αναζήτηση σε συγκεκριμένη κατηγορία δεν επιστρέψει αποτελέσματα, γίνεται αναζήτηση ανεξάρτητα από τη κατηγορία.)</li>
+			<li style="font-size:20px; color:#d19d04;">Εμφάνιση των <b>1.000 (max) πιο σχετικών προϊόντων</b> με βάση το relevance score.</li>
+			<li style="font-size:20px; color:#d19d04;">Εμφάνιση μόνο των <b>διαθέσιμων προϊόντων</b>.</li>
+			<li style="font-size:20px; color:#d19d04;">Η <b>σειρά εμφάνισης</b> των αποτελεσμάτων είναι με βάση: <b>relevance score, popularity.</b></li>
+			<li style="font-size:20px; color:#d19d04;">Αναζήτηση με βάση τον <b>κωδικό του προϊόντος (product_id).</b> π.χ. 29870</li>
+			<li style="font-size:20px; color:#d19d04;">Επιστροφή 'search flag' με πληροφορία για το αν τα αποτελέσματα έχουν προκύψει μέσω Elastic Search ή popularity.</li>
+			<li style="font-size:20px; color:#d19d04;">Εμφάνιση σχετικών αποτελεσμάτων όταν η αναζήτηση έχει <b>ορθογραφικά λάθη ή κεφαλαία</b> π.χ. 'σεντονεια ΜΟΝΑ'</li>
+			<li style="font-size:20px; color:#d19d04;">Εμφάνιση σχετικών αποτελεσμάτων όταν <b>αναζήτηση είναι στα greeklish.</b> π.χ. 'sentoni'</li>
+			<li style="font-size:20px; color:#d19d04;">Εμφάνιση αποτελεσμάτων με βάση το <b>popularity</b> όταν <b>η αναζήτηση είναι λάθος.</b> π.χ. 'gjtks'</li>
+			<li style="font-size:20px; color:#d19d04;"><b>Λίστα με stopwords</b> (π.χ. το, και) οι οποίες δεν λαμβάνονται υπόψη κατά την αναζήτηση.</li>
+			<li style="font-size:20px; color:#d19d04;"><b>Λίστα με συνώνυμες</b> λέξεις οι οποίες αντιμετωπίζονται ως ίδιες κατά την αναζήτηση. π.χ. υπνοδωμάτιο, bedroom => κρεβατοκάμαρα</li>
+		</ul>
+		<br><br>
+		<div class="footer">
+		    Developed and designed by: <a href="https://infilab.io/" target='_blank' style="color:white">InfiLab GmbH</a>
+			<br>Contact information: <a target="_blank" href="mailto:info@infilab.io" style="color:white">info@infilab.io</a>
+		</div>
+
+
+
+   </body>
+</html>

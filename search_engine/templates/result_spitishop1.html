@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		.footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0px;
+		   width: 100%;
+		   background-color: #595959;
+			color: white;
+		   text-align: left;
+			font-size:15px;
+		}
+		</style>
+	</head>
+
+	<body>
+		<a href="{{ url_for('spitishop_home')}}"><img src='/static/spitishop2.png' align="left" width='190' height='50'></a>
+		<br><br>
+		<!--<h1 align="center">Loreal Italy</h1> -->
+
+
+		<h3 style="color:red; text-align:center;"><b>Πατήστε <a href="{{ url_for('spitishop_home')}}">εδώ</a> για νέα αναζήτηση</b></h3>
+
+		<p style="font-size:1;" align="center">Η αναζήτηση σας ήταν: <b>{{ result1['search']}}</b> στην κατηγορία <b>{{ result1['category']}}</b></p>
+		<p style="font-size:1;" align="center">Πατήστε <a href="https://www.spitishop.gr/search?controller=search&orderby=position&orderway=desc&search_query={{ result1['search']}}" target="_blank">εδώ</a> για να δείτε το αντίστοιχο search στο spitishop.gr</p>
+
+
+	  <hr>
+	  <p><b>Τα αποτελέσματα της αναζήτησης είναι:</b></p>
+        <p>Αποτελέσματα με βάση το: <b>{{search_flag}}</b></p>
+		*Ο μέγιστος αριθμός αποτελεσμάτων είναι 1.000 προϊόντα
+		<table style=" border:0"  bgcolor="#f2f2f2" align="center">
+			{% for results_5 in result2 %}
+			<tr>
+				{% for i in results_5 %}
+
+
+
+						<td align="center">
+							<a href={{ i['Url'] }} target="_blank"><img src= {{ i["img_url"] }} width="220" height="120" border="0"></img></a><br>
+							<a href={{ i['Url'] }} target="_blank">{{ i['Product_name'] }} </a><br>
+						 	Score: {{ i['score'] }} <br>
+							<!-- {{ i['Brand'] }} -->
+
+						</td>
+
+		{% endfor %}
+		</tr>
+			{% endfor %}
+		</table>
+		<br><br><br><br>
+		<div class="footer">
+		    Developed and designed by: <a href="https://infilab.io/" target='_blank' style="color:white">InfiLab GmbH</a>
+			<br>Contact information: <a target="_blank" href="mailto:info@infilab.io" style="color:white">info@infilab.io</a>
+
+		</div>
+
+   </body>
+
+
+</html>
